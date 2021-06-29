@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Midnight_Manchego.Models
@@ -31,8 +33,9 @@ namespace Midnight_Manchego.Models
         public string ImageStream { get; set; }
 
         // ImageFile is for uploading images from view
-        [NotMapped]
-        [DisplayName("Upload File")]
+        [NotMapped]        
+        [DisplayName("Upload File")]        
+        [JsonIgnore] // excludes from API as ImageFile is used for upload and not in the database
         public IFormFile ImageFile { get; set; }
 
         // Convert IFormFIle ImageFile to a data-string as string ImageStream
